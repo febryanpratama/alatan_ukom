@@ -63,7 +63,11 @@ class AdminController extends Controller
 
     public function postUjian(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+
+        $response = $this->adminService->postUjian($request->all());
+
+        return back()->with($response['status'], $response['message']);
     }
 
 

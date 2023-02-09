@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\DetailKomentar;
 use App\Models\Indikator;
 use App\Models\Ticket;
 use App\Models\User;
@@ -161,5 +162,42 @@ class AdminService
             'data' => $data,
         ];
         // dd($data);
+    }
+
+    public function postUjian($data)
+    {
+        // dd($data);
+        $validator = Validator::make($data, [
+            // 'ticket_id' => 'required|numeric|exists:tickets,id',
+            'indikator_id.*' => 'required|numeric|exists:indikators,id',
+        ]);
+
+        if ($validator->fails()) {
+            return [
+                'status' => false,
+                'message' => $validator->errors()->first(),
+            ];
+        }
+
+        // dd($data);
+
+        for ($i = 0; $i < count($data['indikator_id']); $i++) {
+            $response = Indikator::firstWhere('id', $data['indikator_id'][$i])->update([
+                'status' => $data['status_indikator'][$i],
+            ]);
+
+            // dd($data['komentar_indikator']);
+            if ($data['komentar_indikator'][$i] != null) {
+                DetailKomentar::create([
+                    'indikator_id' => $data['indikator_id'][$i],
+                    'komentar' => $data['komentar_indikator'][$i],
+                ]);
+            }
+        }
+
+        return [
+            'status' => true,
+            'message' => 'Berhasil mengubah Peserta',
+        ];
     }
 }

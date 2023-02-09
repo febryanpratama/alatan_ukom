@@ -42,6 +42,7 @@
 
                                 @foreach ($data as $item)
                                     
+                                    <input type="hidden" name="indikator_id[]" value="{{ $item->id }}">
                                     <div class="comman-space bdr-bottom-line">
                                         <div class="instruct-review-blk">
                                             <div class="review-item">
@@ -58,9 +59,18 @@
                                                     <div class="col-md-3 p-3">
                                                         <select name="status_indikator[]" class="form-control" id="">
                                                             <option value="" selected disabled>== Pilih ==</option>
-                                                            <option value="Setuju">Setuju</option>
-                                                            <option value="Tolak">Tolak</option>
-                                                            <option value="Revisi">Revisi</option>
+                                                            <option value="Menunggu Review" @if ($item->status == 'Menunggu Review')
+                                                                selected
+                                                            @endif>Menunggu Review</option>
+                                                            <option value="Revisi" @if ($item->status == 'Revisi')
+                                                                selected
+                                                            @endif>Revisi</option>
+                                                            <option value="Ditolak" @if ($item->status == 'Ditolak')
+                                                                selected
+                                                            @endif>Ditolak</option>
+                                                            <option value="Setuju" @if ($item->status == 'Setuju')
+                                                                selected
+                                                            @endif>Setuju</option>
                                                         </select>
                                                     </div>
                                                 </div>  
