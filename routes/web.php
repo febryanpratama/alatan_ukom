@@ -64,6 +64,13 @@ Route::group([
     'prefix' => 'user',
 ], function () {
 
+    Route::prefix('/ticket')->group(function () {
+        Route::get('/', 'indexTicket');
+        // Route::get('/list', 'getListTicket');
+        Route::get('/{ticket_id}/detail', 'detailTicket');
+        // Route::post('/store', 'postTicket');
+    });
+
     Route::prefix('dokumen-ujian')->group(function () {
         Route::get('/', 'indexDokumenUjian');
         // Route::get('/list', 'getListDokumenUjian');

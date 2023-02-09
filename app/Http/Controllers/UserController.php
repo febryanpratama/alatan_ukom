@@ -16,6 +16,32 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
+    public function indexTicket()
+    {
+        $response = $this->userService->indexTicket();
+
+        return view('pages.user.ujian.ticket', [
+            'data' => $response['ticket'],
+            'title' => 'List Ujian'
+        ]);
+    }
+
+    public function detailTicket($ticket_id)
+    {
+        // dd($ticket_id);
+        $response = $this->userService->detailTicket(decrypt($ticket_id));
+
+        if (!$response['status']) {
+            return back()->with('error', $response['message']);
+        } else {
+            return view('pages.user.ujian.detail', [
+                'title' => 'Detail Ujian',
+                'data' => $response['data'],
+                'ticket_id' => $ticket_id,
+            ]);
+        }
+    }
+
     public function indexDokumenUjian()
     {
         // $dokumen = DokumenUjian::all();
