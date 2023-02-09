@@ -49,6 +49,8 @@ class ProfileController extends Controller
         $user = $request->user();
 
         Auth::logout();
+        // Session::flush();
+        // return redirect()->route('login')->with('You have logged out!');
 
         $user->delete();
 
