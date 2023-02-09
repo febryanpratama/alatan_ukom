@@ -12,7 +12,7 @@
                         {{-- {{ dd($data) }} --}}
                         <form action="{{ url('admin/list-ujian/store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="user_id" value="{{ $data['user']->id }}">
+                            {{-- <input type="hidden" name="user_id" value="{{ $data['user']->id }}"> --}}
                             <div class="settings-inner-blk p-0">
                                 <div class="sell-course-head comman-space">
                                     <h3>Reviews</h3>
@@ -39,181 +39,36 @@
                                     </div>
                                 </div>
                                 {{-- POKJA --}}
-                                <div class="comman-space bdr-bottom-line">
-                                    <div class="instruct-review-blk">
-                                        <div class="review-item">
-                                            <div class="instructor-wrap border-0 m-0 text-center">
-                                                <div class="col-md-3 p-3">
-                                                    <iframe src="{{ asset('/laraview/#../dokumen/'.$data['detail']->dokumen_indikator_1.'') }}" width="200px" height="130" allowfullscreen webkitallowfullscreen></iframe>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <p class="text-break">Reviu Dokumen Persiapan Pengadaan Barang/Jasa</p>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <textarea name="komentar_indikator_1" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin"></textarea>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <select name="status_indikator_1" class="form-control" id="">
-                                                        <option value="" selected disabled>== Pilih ==</option>
-                                                        <option value="Setuju">Setuju</option>
-                                                        <option value="Tolak">Tolak</option>
-                                                        <option value="Revisi">Revisi</option>
-                                                    </select>
-                                                </div>
-                                            </div>  
+
+                                @foreach ($data as $item)
+                                    
+                                    <div class="comman-space bdr-bottom-line">
+                                        <div class="instruct-review-blk">
+                                            <div class="review-item">
+                                                <div class="instructor-wrap border-0 m-0 text-center">
+                                                    <div class="col-md-3 p-3">
+                                                        <iframe src="{{ asset('/laraview/#../dokumen/'.$item->path_file.'') }}" width="200px" height="130" allowfullscreen webkitallowfullscreen></iframe>
+                                                    </div>
+                                                    <div class="col-md-3 p-3">
+                                                        <p class="text-break">{{ $item['name'] }}</p>
+                                                    </div>
+                                                    <div class="col-md-3 p-3">
+                                                        <textarea name="komentar_indikator[]" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin"></textarea>
+                                                    </div>
+                                                    <div class="col-md-3 p-3">
+                                                        <select name="status_indikator[]" class="form-control" id="">
+                                                            <option value="" selected disabled>== Pilih ==</option>
+                                                            <option value="Setuju">Setuju</option>
+                                                            <option value="Tolak">Tolak</option>
+                                                            <option value="Revisi">Revisi</option>
+                                                        </select>
+                                                    </div>
+                                                </div>  
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="comman-space bdr-bottom-line">
-                                    <div class="instruct-review-blk">
-                                        <div class="review-item">
-                                            <div class="instructor-wrap border-0 m-0 text-center">
-                                                <div class="col-md-3 p-3">
-                                                    <iframe src="{{ asset('/laraview/#../dokumen/'.$data['detail']->dokumen_indikator_2.'') }}" width="200px" height="130" allowfullscreen webkitallowfullscreen></iframe>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <p class="text-break">Penyusunan dan Penjelasan Dokumen Pemilihan</p>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <textarea name="komentar_indikator_2" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin"></textarea>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <select name="status_indikator_2" class="form-control" id="">
-                                                        <option value="" selected disabled>== Pilih ==</option>
-                                                        <option value="Setuju">Setuju</option>
-                                                        <option value="Tolak">Tolak</option>
-                                                        <option value="Revisi">Revisi</option>
-                                                    </select>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comman-space bdr-bottom-line">
-                                    <div class="instruct-review-blk">
-                                        <div class="review-item">
-                                            <div class="instructor-wrap border-0 m-0 text-center">
-                                                <div class="col-md-3 p-3">
-                                                    <iframe src="{{ asset('/laraview/#../dokumen/'.$data['detail']->dokumen_indikator_3.'') }}" width="200px" height="130" allowfullscreen webkitallowfullscreen></iframe>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <p class="text-break">Evaluasi Penawaran</p>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <textarea name="komentar_indikator_3" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin"></textarea>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <select name="status_indikator_3" class="form-control" id="">
-                                                        <option value="" selected disabled>== Pilih ==</option>
-                                                        <option value="Setuju">Setuju</option>
-                                                        <option value="Tolak">Tolak</option>
-                                                        <option value="Revisi">Revisi</option>
-                                                    </select>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comman-space bdr-bottom-line">
-                                    <div class="instruct-review-blk">
-                                        <div class="review-item">
-                                            <div class="instructor-wrap border-0 m-0 text-center">
-                                                <div class="col-md-3 p-3">
-                                                    <iframe src="{{ asset('/laraview/#../dokumen/'.$data['detail']->dokumen_indikator_4.'') }}" width="200px" height="130" allowfullscreen webkitallowfullscreen></iframe>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <p class="text-break">Penilaian Kualifikasi</p>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <textarea name="komentar_indikator_4" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin"></textarea>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <select name="status_indikator_4" class="form-control" id="">
-                                                        <option value="" selected disabled>== Pilih ==</option>
-                                                        <option value="Setuju">Setuju</option>
-                                                        <option value="Tolak">Tolak</option>
-                                                        <option value="Revisi">Revisi</option>
-                                                    </select>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comman-space bdr-bottom-line">
-                                    <div class="instruct-review-blk">
-                                        <div class="review-item">
-                                            <div class="instructor-wrap border-0 m-0 text-center">
-                                                <div class="col-md-3 p-3">
-                                                    <iframe src="{{ asset('/laraview/#../dokumen/'.$data['detail']->dokumen_indikator_5.'') }}" width="200px" height="130" allowfullscreen webkitallowfullscreen></iframe>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <p class="text-break">Pengelolaan Sanggahan</p>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <textarea name="komentar_indikator_5" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin"></textarea>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <select name="status_indikator_5" class="form-control" id="">
-                                                        <option value="" selected disabled>== Pilih ==</option>
-                                                        <option value="Setuju">Setuju</option>
-                                                        <option value="Tolak">Tolak</option>
-                                                        <option value="Revisi">Revisi</option>
-                                                    </select>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comman-space bdr-bottom-line">
-                                    <div class="instruct-review-blk">
-                                        <div class="review-item">
-                                            <div class="instructor-wrap border-0 m-0 text-center">
-                                                <div class="col-md-3 p-3">
-                                                    <iframe src="{{ asset('/laraview/#../dokumen/'.$data['detail']->dokumen_indikator_6.'') }}" width="200px" height="130" allowfullscreen webkitallowfullscreen></iframe>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <p class="text-break">Negosiasi Teknis dan Harga</p>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <textarea name="komentar_indikator_6" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin"></textarea>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <select name="status_indikator_6" class="form-control" id="">
-                                                        <option value="" selected disabled>== Pilih ==</option>
-                                                        <option value="Setuju">Setuju</option>
-                                                        <option value="Tolak">Tolak</option>
-                                                        <option value="Revisi">Revisi</option>
-                                                    </select>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comman-space bdr-bottom-line">
-                                    <div class="instruct-review-blk">
-                                        <div class="review-item">
-                                            <div class="instructor-wrap border-0 m-0 text-center">
-                                                <div class="col-md-3 p-3">
-                                                    <iframe src="{{ asset('/laraview/#../dokumen/'.$data['detail']->dokumen_indikator_7.'') }}" width="200px" height="130" allowfullscreen webkitallowfullscreen></iframe>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <p class="text-break">Penyusunan Daftar Penyedia</p>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <textarea name="komentar_indikator_7" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin"></textarea>
-                                                </div>
-                                                <div class="col-md-3 p-3">
-                                                    <select name="status_indikator_7" class="form-control" id="">
-                                                        <option value="" selected disabled>== Pilih ==</option>
-                                                        <option value="Setuju">Setuju</option>
-                                                        <option value="Tolak">Tolak</option>
-                                                        <option value="Revisi">Revisi</option>
-                                                    </select>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+                                
                                 {{-- End Pokja --}}
                             </div>
                             <div class="d-flex p-2 justify-content-center">

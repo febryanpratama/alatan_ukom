@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Indikator;
 use App\Models\Ticket;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -148,7 +149,10 @@ class AdminService
 
     public function getDetailUjian($ticket_id)
     {
-        $data = Ticket::with('user', 'detail')->where('id', $ticket_id)->first();
+        // dd($ticket_id);
+        $data = Indikator::where('ticket_id', $ticket_id)->get();
+        // dd($data);
+        // $data = Ticket::with('user', 'detail')->where('id', $ticket_id)->first();
 
         // dd($data);
         return [

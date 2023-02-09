@@ -10,6 +10,35 @@ use Illuminate\Support\Facades\Validator;
 
 class UserService
 {
+    public function indexTicket()
+    {
+        $ticket = Ticket::where('user_id', auth()->user()->id)->get();
+
+        return [
+            'ticket' => $ticket,
+        ];
+    }
+
+    public function detailTicket($ticket_id)
+    {
+        // dd($ticket_id);
+        $ticket = Ticket::where('id', $ticket_id)->first();
+
+        if (!$ticket) {
+            return [
+                'status' => false,
+                'message' => 'Ticket tidak ditemukan',
+            ];
+        }
+
+        $indikator = Indikator::where('ticket_id', $ticket_id)->get();
+
+        // dd($indikator);
+        return [
+            'status' => true,
+            'data' => $indikator,
+        ];
+    }
     public function postTicket($data)
     {
         // dd($data);
@@ -40,7 +69,7 @@ class UserService
             for ($i = 0; $i < count($data['name_indikator']); $i++) {
                 // dd($data['name_indikator'][$i]);
                 $dokumen1 = $data['dokumen_indikator'][$i];
-                $nama_file1 = time() . "_" . $dokumen1->getClientOriginalName();
+                $nama_file1 = time() . rand(000, 999) . "." . $dokumen1->getClientOriginalExtension();
                 $tujuan_upload = 'dokumen';
                 $dokumen1->move($tujuan_upload, $nama_file1);
 

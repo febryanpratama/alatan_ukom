@@ -44,10 +44,15 @@
                 
                 @hasrole('PPK|Pokja')
                 <li class="nav-item">
+                    <a class="" href="{{ url('user/ticket') }}" class="nav-link">
+                        <i class="feather-server"></i> Ticket
+                    </a>
+                </li>
+                {{-- <li class="nav-item">
                     <a class="" href="{{ url('user/dokumen-ujian') }}" class="nav-link">
                         <i class="feather-server"></i> Data Ujian
                     </a>
-                </li>
+                </li> --}}
                 @endrole
             </ul>
             <div class="instructor-title">
