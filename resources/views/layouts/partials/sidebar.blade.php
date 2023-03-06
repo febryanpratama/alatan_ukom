@@ -81,9 +81,9 @@
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button class="submit" class="nav-link btn">
+                        <a class="submit" href="logout.html" class="nav-link btn">
                             <i class="feather-power"></i> Sign Out
-                        </button>
+                        </a>
                         {{-- <a class="" href="index.html" class="nav-link">
                         </a> --}}
                     </form>
