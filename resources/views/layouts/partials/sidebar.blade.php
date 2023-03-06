@@ -34,10 +34,10 @@
                         <i class="feather-dollar-sign"></i> Payouts
                     </a>
                 </li> --}}
-                @hasrole('admin')
+                @hasrole('Admin')
                 <li class="nav-item">
                     <a class="" href="{{ url('admin/list-ujian') }}" class="nav-link">
-                        <i class="feather-server"></i> Data Ujian
+                        <i class="feather-server"></i> List Ujian Peserta
                     </a>
                 </li>
                 @endrole

@@ -41,7 +41,7 @@ class UserService
     }
     public function postTicket($data)
     {
-        // dd($data);
+        dd($data);
         $validator = Validator::make($data, [
             'name.*' => 'required',
             'dokumen_indikator.*' => 'required|mimes:pdf|max:2048',

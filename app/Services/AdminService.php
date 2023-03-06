@@ -168,7 +168,6 @@ class AdminService
     {
         // dd($data);
         $validator = Validator::make($data, [
-            // 'ticket_id' => 'required|numeric|exists:tickets,id',
             'indikator_id.*' => 'required|numeric|exists:indikators,id',
         ]);
 

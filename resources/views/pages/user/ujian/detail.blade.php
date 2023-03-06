@@ -25,13 +25,16 @@
                                                     Preview Dokumen
                                                 </div>
                                                 <div class="col-md-3">
-                                                    Nama Dokumen
+                                                    Nama Dokumen <br> / Status Dokumen
                                                 </div>
                                                 <div class="col-md-3">
                                                     Komentar Dokumen
                                                 </div>
                                                 <div class="col-md-3">
                                                     Upload Dokumen
+                                                </div>
+                                                <div class="col-md-3">
+                                                    Status Review
                                                 </div>
                                             </div>  
                                         </div>
@@ -49,17 +52,54 @@
                                                     </div>
                                                     <div class="col-md-3 p-3">
                                                         <p class="text-break">{{ $item->name }}</p>
+                                                        <input type="hidden" name="name_indikator[]" value="{{ $item->name }}">
+                                                        @switch($item->status)
+                                                            @case('Menunggu Review')
+                                                                <p class="btn btn-outline-info">Menunggu Review</p>
+                                                                @break
+                                                            @case('Setuju')
+                                                                
+                                                                <p class="btn btn-outline-success">Setuju</p>
+                                                                @break
+                                                            @case('Ditolak')
+                                                                
+                                                                <p class="btn btn-outline-danger">Ditolak</p>
+                                                                @break
+                                                            @case('Revisi')
+                                                                
+                                                                <p class="btn btn-outline-warning">Revisi</p>
+                                                                @break
+                                                            @default
+                                                                
+                                                        @endswitch
                                                     </div>
                                                     <div class="col-md-3 p-3">
-                                                        <textarea name="indikator" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin" readonly></textarea>
+                                                        <textarea id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin" readonly>{{ App\Helpers\Helper::getLastKomentar($item->id) }}</textarea>
                                                     </div>
+
                                                     <div class="col-md-3 p-3">
-                                                        <input type="file" name="dokumen_indikator[]" class="form-control dropify" data-height="120">
+                                                        <input type="file" name="dokumen_indikator[]" class="form-control dropify" @if ($item->status == 'Setuju')
+                                                            value="{{ $item->path_file }}"
+
+                                                            @else
+
+                                                            value=""
+                                                        @endif data-height="120">
+
+                                                        <small class="text-danger">Jika dokumen telah disetujui. mohon untuk dikosongkan</small>
                                                     </div>
+                                                    {{-- <div class="col-md-3 p-3">
+                                                        <p class="btn btn-outline-success text-success">Dokumen telah Disetujui</p>
+                                                        <input type="hidden" name="dokumen_indikator[]" value="{{ $item->path_file }}">
+                                                    </div> --}}
+                                                    {{-- @if ($item->status != 'Setuju')
+                                                        @else
+                                                    @endif --}}
                                                 </div>  
                                             </div>
                                         </div>
                                     </div>
+
                                 @endforeach
                                 {{-- End Pokja --}}
                             </div>

@@ -41,7 +41,7 @@
                                 {{-- POKJA --}}
 
                                 @foreach ($data as $item)
-                                    
+                                    {{-- {{ dd($data) }} --}}
                                     <input type="hidden" name="indikator_id[]" value="{{ $item->id }}">
                                     <div class="comman-space bdr-bottom-line">
                                         <div class="instruct-review-blk">
@@ -54,7 +54,7 @@
                                                         <p class="text-break">{{ $item['name'] }}</p>
                                                     </div>
                                                     <div class="col-md-3 p-3">
-                                                        <textarea name="komentar_indikator[]" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin"></textarea>
+                                                        <textarea name="komentar_indikator[]" id="" cols="30" class="form-control" rows="5" placeholder="Komentar Admin">{{ App\Helpers\Helper::getLastKomentar($item->id) }}</textarea>
                                                     </div>
                                                     <div class="col-md-3 p-3">
                                                         <select name="status_indikator[]" class="form-control" id="">
